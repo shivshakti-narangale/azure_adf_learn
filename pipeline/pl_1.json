@@ -20,6 +20,30 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "act_set_var_last_nm",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_var_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "last_nm",
+					"value": {
+						"value": "@variables('last_name')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
@@ -29,6 +53,9 @@
 			"last_name": {
 				"type": "String",
 				"defaultValue": "jadhav"
+			},
+			"last_nm": {
+				"type": "String"
 			}
 		},
 		"folder": {
