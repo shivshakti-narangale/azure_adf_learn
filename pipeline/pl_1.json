@@ -1,0 +1,32 @@
+{
+	"name": "pl_1",
+	"properties": {
+		"description": "learning azure",
+		"activities": [
+			{
+				"name": "act_set_var",
+				"description": "define variable",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "name",
+					"value": "Ram"
+				}
+			}
+		],
+		"variables": {
+			"name": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session_1st"
+		},
+		"annotations": []
+	}
+}
