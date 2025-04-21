@@ -32,16 +32,42 @@
 							}
 						},
 						{
-							"name": "act_set_var_append",
-							"type": "AppendVariable",
+							"name": "act_if_condition",
+							"type": "IfCondition",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "name_lst",
-								"value": {
-									"value": "@if(equals(item(), 'Ram'),item(), ' ' )",
+								"expression": {
+									"value": "@equals(toLower(item()),'ram')",
 									"type": "Expression"
-								}
+								},
+								"ifFalseActivities": [
+									{
+										"name": "act_set_var_append1",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "name_lst",
+											"value": "Mhoan"
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "act_set_var_append",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "name_lst",
+											"value": {
+												"value": "@item()",
+												"type": "Expression"
+											}
+										}
+									}
+								]
 							}
 						}
 					]
@@ -74,12 +100,7 @@
 		],
 		"parameters": {
 			"val_lst": {
-				"type": "array",
-				"defaultValue": [
-					"Ram",
-					"Sham",
-					"Kiran"
-				]
+				"type": "array"
 			}
 		},
 		"variables": {
