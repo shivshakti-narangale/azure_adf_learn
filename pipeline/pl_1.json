@@ -4,7 +4,7 @@
 		"description": "learning azure",
 		"activities": [
 			{
-				"name": "act_set_var",
+				"name": "act_set_var_name",
 				"description": "define variable",
 				"type": "SetVariable",
 				"dependsOn": [],
@@ -15,13 +15,20 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "name",
-					"value": "Ram"
+					"value": {
+						"value": "@variables('last_name')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
 		"variables": {
 			"name": {
 				"type": "String"
+			},
+			"last_name": {
+				"type": "String",
+				"defaultValue": "jadhav"
 			}
 		},
 		"folder": {
