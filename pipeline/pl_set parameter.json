@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "act_set_var_name",
+				"name": "act_set_var_fname",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"policy": {
@@ -12,9 +12,26 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "name",
+					"variableName": "fname",
 					"value": {
-						"value": "@pipeline().parameters.name",
+						"value": "@split(pipeline().parameters.name,' ')[0]",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var_lname",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "lname",
+					"value": {
+						"value": "@split(pipeline().parameters.name,' ')[1]",
 						"type": "Expression"
 					}
 				}
@@ -28,6 +45,18 @@
 		},
 		"variables": {
 			"name": {
+				"type": "String"
+			},
+			"first_name": {
+				"type": "Array"
+			},
+			"last-name": {
+				"type": "Array"
+			},
+			"fname": {
+				"type": "String"
+			},
+			"lname": {
 				"type": "String"
 			}
 		},
