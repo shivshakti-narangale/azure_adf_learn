@@ -1,108 +1,72 @@
 {
-	"name": "pl_switch",
+	"name": "pl_until",
 	"properties": {
 		"activities": [
 			{
-				"name": "act_for_each",
-				"type": "ForEach",
+				"name": "act_set_until",
+				"type": "Until",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.state_name",
+					"expression": {
+						"value": "@greaterOrEquals(variables('var_test'),5 )",
 						"type": "Expression"
 					},
-					"isSequential": true,
 					"activities": [
 						{
-							"name": "act_set_switch",
-							"type": "Switch",
+							"name": "act_set_var1",
+							"type": "SetVariable",
 							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"on": {
-									"value": "@item()",
+								"variableName": "var_test",
+								"value": {
+									"value": "@add(variables('increment_test'),1 )",
 									"type": "Expression"
-								},
-								"cases": [
-									{
-										"value": "maharashtra",
-										"activities": [
-											{
-												"name": "act_set_var_1",
-												"type": "SetVariable",
-												"dependsOn": [],
-												"policy": {
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"variableName": "state",
-													"value": "'maharashtra'"
-												}
-											}
-										]
-									},
-									{
-										"value": "madhe pradesh",
-										"activities": [
-											{
-												"name": "act_set_var_2",
-												"type": "SetVariable",
-												"dependsOn": [],
-												"policy": {
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"variableName": "state",
-													"value": "'madhe pradesh'"
-												}
-											}
-										]
-									}
-								],
-								"defaultActivities": [
-									{
-										"name": "act_set_var_3",
-										"type": "SetVariable",
-										"dependsOn": [],
-										"policy": {
-											"secureOutput": false,
-											"secureInput": false
-										},
-										"userProperties": [],
-										"typeProperties": {
-											"variableName": "state",
-											"value": "'unable to initalize'"
-										}
-									}
-								]
+								}
+							}
+						},
+						{
+							"name": "act_set_var2",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "act_set_var1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "increment_test",
+								"value": {
+									"value": "@variables('var_test')",
+									"type": "Expression"
+								}
 							}
 						}
-					]
+					],
+					"timeout": "0.12:00:00"
 				}
 			}
 		],
-		"parameters": {
-			"state_name": {
-				"type": "array"
-			}
-		},
 		"variables": {
-			"each_val": {
-				"type": "String"
+			"var_test": {
+				"type": "Integer",
+				"defaultValue": 0
 			},
-			"name_lst": {
-				"type": "Array"
-			},
-			"outer_list": {
-				"type": "Array"
-			},
-			"state": {
-				"type": "String"
+			"increment_test": {
+				"type": "Integer",
+				"defaultValue": 0
 			}
 		},
 		"folder": {
