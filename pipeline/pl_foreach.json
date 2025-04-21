@@ -46,6 +46,30 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "act_set_var_outerlist",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_value_foreach",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "outer_list",
+					"value": {
+						"value": "@variables('name_lst')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -63,6 +87,9 @@
 				"type": "String"
 			},
 			"name_lst": {
+				"type": "Array"
+			},
+			"outer_list": {
 				"type": "Array"
 			}
 		},
