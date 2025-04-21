@@ -1,0 +1,147 @@
+{
+	"name": "pl_2",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_set_filter1",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.name_list",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@startswith(toUpper(item()),'R' )",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_filter1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "r_list",
+					"value": {
+						"value": "@activity('act_set_filter1').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_filter2",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.name_list",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@startswith(toUpper(item()), 'M')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_filter2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "m_list",
+					"value": {
+						"value": "@activity('act_set_filter2').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_filter3",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.name_list",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@and(not(startswith(toUpper(item()) ,'R')),\nnot(startswith(toUpper(item()),'M')))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var3",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_filter3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "other",
+					"value": {
+						"value": "@activity('act_set_filter3').output.value",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"name_list": {
+				"type": "array"
+			}
+		},
+		"variables": {
+			"r_list": {
+				"type": "Array"
+			},
+			"m_list": {
+				"type": "Array"
+			},
+			"other": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "session_3rd"
+		},
+		"annotations": []
+	}
+}
