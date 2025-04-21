@@ -1,0 +1,113 @@
+{
+	"name": "pl_switch",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_for_each",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.state_name",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "act_set_switch",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@item()",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "maharashtra",
+										"activities": [
+											{
+												"name": "act_set_var_1",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "state",
+													"value": "'maharashtra'"
+												}
+											}
+										]
+									},
+									{
+										"value": "madhe pradesh",
+										"activities": [
+											{
+												"name": "act_set_var_2",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "state",
+													"value": "'madhe pradesh'"
+												}
+											}
+										]
+									}
+								],
+								"defaultActivities": [
+									{
+										"name": "act_set_var_3",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "state",
+											"value": "'unable to initalize'"
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"state_name": {
+				"type": "array"
+			}
+		},
+		"variables": {
+			"each_val": {
+				"type": "String"
+			},
+			"name_lst": {
+				"type": "Array"
+			},
+			"outer_list": {
+				"type": "Array"
+			},
+			"state": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session_2nd"
+		},
+		"annotations": []
+	}
+}
