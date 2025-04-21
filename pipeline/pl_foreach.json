@@ -39,7 +39,7 @@
 							"typeProperties": {
 								"variableName": "name_lst",
 								"value": {
-									"value": "@item()",
+									"value": "@if(equals(item(), 'Ram'),item(), ' ' )",
 									"type": "Expression"
 								}
 							}
