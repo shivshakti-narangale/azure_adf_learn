@@ -1,0 +1,123 @@
+{
+	"name": "pl_1st",
+	"properties": {
+		"description": "learn azure DF",
+		"activities": [
+			{
+				"name": "act_set_var_name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "person_details",
+					"value": {
+						"value": "@pipeline().parameters.person",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var_first_name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_var_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "first_name",
+					"value": {
+						"value": "@split(split(variables('person_details'),' ')[0], '_')[0]",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var_last_name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_var_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "last_name",
+					"value": {
+						"value": "@split(split(variables('person_details'),' ')[0],'_')[1]",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_age",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_set_var_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "age",
+					"value": {
+						"value": "@split(variables('person_details'),' ' )[1]",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"person": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"name": {
+				"type": "String"
+			},
+			"person_details": {
+				"type": "String"
+			},
+			"first_name": {
+				"type": "String"
+			},
+			"last_name": {
+				"type": "String"
+			},
+			"age": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session_2nd"
+		},
+		"annotations": []
+	}
+}
