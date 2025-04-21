@@ -1,0 +1,39 @@
+{
+	"name": "pl_set parameter",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_set_var_name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "name",
+					"value": {
+						"value": "@pipeline().parameters.name",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"name": {
+				"type": "string",
+				"defaultValue": "Ram Patil"
+			}
+		},
+		"variables": {
+			"name": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session_1st"
+		},
+		"annotations": []
+	}
+}
