@@ -1,7 +1,7 @@
 {
-	"name": "pl_1",
+	"name": "pl_1 assign variable",
 	"properties": {
-		"description": "learning azure",
+		"description": "learning azure DF",
 		"activities": [
 			{
 				"name": "act_set_var_name",
@@ -51,11 +51,37 @@
 				"type": "String"
 			},
 			"last_name": {
-				"type": "String",
-				"defaultValue": "jadhav"
+				"type": "String"
 			},
 			"last_nm": {
 				"type": "String"
+			},
+			"first_name": {
+				"type": "String"
+			},
+			"last-name": {
+				"type": "Array"
+			},
+			"fname": {
+				"type": "String"
+			},
+			"lname": {
+				"type": "String"
+			},
+			"person_details": {
+				"type": "String"
+			},
+			"age": {
+				"type": "String"
+			},
+			"each_val": {
+				"type": "String"
+			},
+			"name_lst": {
+				"type": "Array"
+			},
+			"outer_list": {
+				"type": "Array"
 			}
 		},
 		"folder": {
