@@ -1,0 +1,58 @@
+{
+	"name": "pl_1",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_set_var",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "name",
+					"value": {
+						"value": "@split(\n    concat(\n        string(split(pipeline().parameters.test, ',')[1]),',',\n        split(pipeline().parameters.test,',' )[2]),','\n    )\n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var_id",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "id",
+					"value": {
+						"value": "@split(pipeline().parameters.test, ',')[0]",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"test": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"name": {
+				"type": "Array"
+			},
+			"id": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session_3rd"
+		},
+		"annotations": []
+	}
+}
