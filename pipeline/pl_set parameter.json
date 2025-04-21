@@ -48,7 +48,7 @@
 				"type": "String"
 			},
 			"first_name": {
-				"type": "Array"
+				"type": "String"
 			},
 			"last-name": {
 				"type": "Array"
@@ -58,6 +58,24 @@
 			},
 			"lname": {
 				"type": "String"
+			},
+			"person_details": {
+				"type": "String"
+			},
+			"last_name": {
+				"type": "String"
+			},
+			"age": {
+				"type": "String"
+			},
+			"each_val": {
+				"type": "String"
+			},
+			"name_lst": {
+				"type": "Array"
+			},
+			"outer_list": {
+				"type": "Array"
 			}
 		},
 		"folder": {
