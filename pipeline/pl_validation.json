@@ -1,0 +1,21 @@
+{
+	"name": "pl_validation",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_validation_check_file",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"timeout": "0.12:00:00",
+					"sleep": 10
+				}
+			}
+		],
+		"folder": {
+			"name": "session_3rd"
+		},
+		"annotations": []
+	}
+}
