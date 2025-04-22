@@ -1,0 +1,93 @@
+{
+	"name": "Pl_assingment",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.name_val",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "act_set_append1",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "id",
+								"value": {
+									"value": "@item()['id']",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "act_set_append2",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "name",
+								"value": {
+									"value": "@item()['name']",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "act_set_append",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "city",
+								"value": {
+									"value": "@item()['city']",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"name_val": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"id": "1",
+						"name": "Ram Patil",
+						"city": "pune"
+					},
+					{
+						"id": "2",
+						"name": "Rani jadhav",
+						"city": "Loha"
+					}
+				]
+			}
+		},
+		"variables": {
+			"id": {
+				"type": "Array"
+			},
+			"name": {
+				"type": "Array"
+			},
+			"city": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "session_3rd"
+		},
+		"annotations": []
+	}
+}
