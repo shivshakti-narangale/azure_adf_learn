@@ -1,0 +1,69 @@
+{
+	"name": "pl_act_fail",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_if_cond",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(toUpper(pipeline().parameters.name_list),'PATIL')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "act_set_fail",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "please don't pass sirname",
+								"errorCode": "105"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "act_set_var",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_if_cond",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "name",
+					"value": {
+						"value": "@pipeline().parameters.name_list",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"name_list": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"name": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "session_3rd"
+		},
+		"annotations": []
+	}
+}
