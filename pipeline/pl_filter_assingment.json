@@ -1,0 +1,147 @@
+{
+	"name": "pl_filter_assingment",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_filter_pune",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.city_list",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(toLower(item()),'pune')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "pune",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_filter_pune",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "list_pune",
+					"value": {
+						"value": "@activity('act_filter_pune').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_filter_mumbai",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.city_list",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(toLower(item()),'mumbai' )",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "other_filter",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.city_list",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@and(not(equals(toLower(item()),'pune')),\nnot(equals(toLower(item()),'mumbai')))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "mumbai",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_filter_mumbai",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "list_mumbai",
+					"value": {
+						"value": "@activity('act_filter_mumbai').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "other_city",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "other_filter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "list_other",
+					"value": {
+						"value": "@activity('other_filter').output.value",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"city_list": {
+				"type": "array"
+			}
+		},
+		"variables": {
+			"list_pune": {
+				"type": "Array"
+			},
+			"list_mumbai": {
+				"type": "Array"
+			},
+			"list_other": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "session_3rd"
+		},
+		"annotations": []
+	}
+}
