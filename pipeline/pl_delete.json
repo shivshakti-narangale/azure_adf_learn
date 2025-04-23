@@ -22,7 +22,7 @@
 					"enableLogging": false,
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
-						"fileListPath": "input/Deparment2.csv.txt",
+						"fileListPath": "input/delete_act.txt",
 						"enablePartitionDiscovery": false
 					}
 				}
