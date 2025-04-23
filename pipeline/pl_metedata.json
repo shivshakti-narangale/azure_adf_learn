@@ -24,14 +24,140 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
 					}
 				}
+			},
+			{
+				"name": "act_for_each",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "act_if_condition",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().type,'Folder' )\n\n",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "set_act_append_2",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "file_lst_temp",
+											"value": {
+												"value": "@item().name",
+												"type": "Expression"
+											}
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "set_act_append",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "floder_lst_temp",
+											"value": {
+												"value": "@item().name",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "act_set_var",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_for_each",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "floder_lst",
+					"value": {
+						"value": "@variables('floder_lst_temp')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "act_set_var1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_for_each",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "file_lst",
+					"value": {
+						"value": "@variables('file_lst_temp')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"floder_lst_temp": {
+				"type": "Array"
+			},
+			"file_lst_temp": {
+				"type": "Array"
+			},
+			"file_lst": {
+				"type": "Array"
+			},
+			"floder_lst": {
+				"type": "Array"
+			}
+		},
 		"folder": {
 			"name": "session_3rd"
 		},
