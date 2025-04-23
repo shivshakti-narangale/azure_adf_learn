@@ -22,8 +22,7 @@
 					"enableLogging": false,
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
-						"recursive": true,
-						"wildcardFileName": "*",
+						"fileListPath": "input/Deparment2.csv.txt",
 						"enablePartitionDiscovery": false
 					}
 				}
