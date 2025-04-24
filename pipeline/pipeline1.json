@@ -18,8 +18,37 @@
 					"method": "GET",
 					"url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
 				}
+			},
+			{
+				"name": "set_act_var",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "act_web",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "feature_lst",
+					"value": {
+						"value": "@activity('act_web').output.features",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"feature_lst": {
+				"type": "Array"
+			}
+		},
 		"folder": {
 			"name": "session_4th"
 		},
