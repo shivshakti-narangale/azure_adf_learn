@@ -359,10 +359,10 @@
 			}
 		],
 		"parameters": {
-			"target_dir": {
+			"source_dir": {
 				"type": "string"
 			},
-			"source_dir": {
+			"target_dir": {
 				"type": "string"
 			}
 		},
