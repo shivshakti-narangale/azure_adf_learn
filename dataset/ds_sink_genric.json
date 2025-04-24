@@ -1,0 +1,31 @@
+{
+	"name": "ds_sink_genric",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gptl_session_data",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dirc_loc": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().dirc_loc",
+					"type": "Expression"
+				},
+				"fileSystem": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
