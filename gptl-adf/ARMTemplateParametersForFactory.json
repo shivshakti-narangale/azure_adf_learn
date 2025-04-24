@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "gptl-adf"
+		},
+		"gptl_session_data_accountKey": {
+			"value": ""
+		},
+		"gptl_session_data_properties_typeProperties_url": {
+			"value": "https://gptlsession.dfs.core.windows.net/"
+		},
+		"rest_api_source_properties_typeProperties_url": {
+			"value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary"
+		}
+	}
+}
