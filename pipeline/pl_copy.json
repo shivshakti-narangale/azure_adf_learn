@@ -43,18 +43,7 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "MergeFiles"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
 					"enableStaging": false,
-					"validateDataConsistency": true,
 					"logSettings": {
 						"enableCopyActivityLog": true,
 						"copyActivityLogSettings": {
@@ -68,25 +57,11 @@
 							},
 							"path": "input/copy_log"
 						}
-					},
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
 					}
 				},
 				"inputs": [
 					{
 						"referenceName": "ds_source_copy_data_wildcard",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_Parquet",
 						"type": "DatasetReference"
 					}
 				]
@@ -398,15 +373,13 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings",
 							"copyBehavior": "MergeFiles"
 						},
 						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -442,7 +415,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_sink_copy_data_wildcard",
+						"referenceName": "ds_Parquet1",
 						"type": "DatasetReference"
 					}
 				]

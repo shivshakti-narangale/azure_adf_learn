@@ -1,0 +1,21 @@
+{
+	"name": "ds_Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gptl_session_data",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "emp.parquet",
+				"folderPath": "target_loc",
+				"fileSystem": "input"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
