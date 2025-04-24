@@ -12,10 +12,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "pl_web",
+						"referenceName": "pl_copy",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"source_dir": "test",
+						"target_dir": "t"
+					}
 				}
 			}
 		],
