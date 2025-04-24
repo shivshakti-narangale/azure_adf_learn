@@ -1,0 +1,21 @@
+{
+	"name": "ds_sink_copy_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gptl_session_data",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
