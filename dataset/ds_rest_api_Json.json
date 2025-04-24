@@ -1,0 +1,19 @@
+{
+	"name": "ds_rest_api_Json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "gptl_session_data",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "rest_api_result",
+				"fileSystem": "input"
+			}
+		},
+		"schema": {}
+	}
+}
