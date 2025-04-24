@@ -1,0 +1,27 @@
+{
+	"name": "pl_act_excute",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_execute",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_web",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "session_4th"
+		},
+		"annotations": []
+	}
+}
