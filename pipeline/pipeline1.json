@@ -38,9 +38,40 @@
 				"typeProperties": {
 					"variableName": "feature_lst",
 					"value": {
-						"value": "@activity('act_web').output.features",
+						"value": "@split('12,13',',' )",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "act_If_condition",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "set_act_var",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@not(equals(activity('act_web').output.metadata.count,length(variables('feature_lst'))))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "act_fail",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "api variable result count is not matching",
+								"errorCode": "105"
+							}
+						}
+					]
 				}
 			}
 		],
