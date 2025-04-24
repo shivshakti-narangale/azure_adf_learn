@@ -12,14 +12,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "pl_copy",
+						"referenceName": "pl_act_child_metedata",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"source_dir": "test",
-						"target_dir": "t"
-					}
+					"waitOnCompletion": true
 				}
 			}
 		],
