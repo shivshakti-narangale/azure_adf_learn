@@ -38,7 +38,7 @@
 				"typeProperties": {
 					"variableName": "feature_lst",
 					"value": {
-						"value": "@split('12,13',',' )",
+						"value": "@activity('act_web').output.features",
 						"type": "Expression"
 					}
 				}
