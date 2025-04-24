@@ -33,7 +33,8 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*",
+							"wildcardFolderPath": "gptl",
+							"wildcardFileName": "EMP*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -174,7 +175,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_source_copy_data",
+						"referenceName": "ds_source_copy_data_wildcard",
 						"type": "DatasetReference"
 					}
 				],
