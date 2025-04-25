@@ -5,6 +5,11 @@
 			"referenceName": "Is_azure_sql",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"table_name": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
@@ -20,7 +25,10 @@
 		],
 		"typeProperties": {
 			"schema": "gptl1",
-			"table": "employee"
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
 		}
 	}
 }
