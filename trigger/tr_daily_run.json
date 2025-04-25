@@ -1,0 +1,32 @@
+{
+	"name": "tr_daily_run",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_metedata",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2025-04-25T06:06:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						40
+					],
+					"hours": [
+						11
+					]
+				}
+			}
+		}
+	}
+}
